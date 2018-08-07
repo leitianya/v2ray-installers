@@ -131,7 +131,7 @@ service v2ray restart
 StatusEcho "V2RAY 加载配置"
 
 [[ -d /home/BBRLKL ]] && mkdir -p /home/BBRLKL
-wget -O /home/BBRLKL/rinetd https://raw.githubusercontent.com/tcp-nanqinlang/lkl-rinetd/master/module/rinetd
+wget -O /home/BBRLKL/rinetd https://raw.githubusercontent.com/hacking001/v2ray-installers/master/binaries/rinetd
 StatusEcho "获取 RINETD"
 chmod +x /home/BBRLKL/rinetd
 echo "0.0.0.0 ${PORT} 0.0.0.0 ${PORT}" >> /home/BBRLKL/ports.conf
