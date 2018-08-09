@@ -12,6 +12,9 @@
     - [WebSockets for CentOS](#websockets-for-centos)
     - [HTTP2 for Debian、Ubuntu](#http2-for-debianubuntu未经过测试)
     - [HTTP2 for CentOS](#http2-for-centos)
+- [安装 mKCP 的伪装版本](#安装-mKCP-的伪装版本)
+    - [mKCP for Debian、Ubuntu with wechat-vedio mask](#mkcp-for-debianubuntu-with-wechat-vedio-mask)
+    - [mKCP for CentOS with wechat-vedio mask](#mkcp-for-centos-with-wechat-vedio-mask)
 - [安装附带 BBRLKL 的版本](#安装附带-bbrlkl-的版本)
     - [WebSockets for OpenVZ Debian、Ubuntu with BBRLKL](#websockets-for-openvz-debianubuntu-with-bbrlkl未经过测试)
     - [WebSockets for OpenVZ CentOS with BBRLKL](#websockets-for-openvz-centos-with-bbrlkl未经过测试)
@@ -80,6 +83,8 @@ wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/ma
 ```bash
 wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-CentOS.sh && bash mKCP.sh
 ```
+
+## 安装 mKCP 的伪装版本
 ### mKCP for Debian、Ubuntu with wechat-vedio mask
 ```bash
 wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio.sh && bash mKCP.sh
