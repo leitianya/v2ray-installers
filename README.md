@@ -2,6 +2,7 @@
 *有问题请发 [issue](https://github.com/hacking001/v2ray-installers/issues)*
 
 ## 总览
+总览并非实时更新，需要自行到底下查看
 - [已通过测试的系统](#已通过测试的系统)
 - [注意事项](#注意事项)
 - [常用命令](#常用命令)
@@ -71,19 +72,35 @@ wget -O HTTP2.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/m
 ```bash
 wget -O HTTP2.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/HTTP2-CentOS.sh && bash HTTP2.sh
 ```
+### mKCP for Debian、Ubuntu（未经过测试）
+```
+wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP.sh && bash mKCP.sh
+```
+### mKCP for CentOS（未经过测试）
+```bash
+wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-CentOS.sh && bash mKCP.sh
+```
+### mKCP for Debian、Ubuntu with wechat-vedio mask（未经过测试）
+```bash
+wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio.sh && bash mKCP.sh
+```
+### mKCP for CentOS with wechat-vedio mask（未经过测试）
+```bash
+wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio-CentOS.sh && bash mKCP.sh
+```
 
 ## 安装附带 BBRLKL 的版本
 ### WebSockets for OpenVZ Debian、Ubuntu with BBRLKL（未经过测试）
-```
+```bash
 wget -O WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets-BBRLKL.sh && bash WebSockets.sh
 ```
 ### WebSockets for OpenVZ CentOS with BBRLKL（未经过测试）
-```
+```bash
 wget -O WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets-BBRLKL-CentOS.sh && bash WebSockets.sh
 ```
 
 ## 内核更新
-```
+```bash
 wget -O v2ray-installer.sh https://install.direct/go.sh && bash v2ray-installer.sh && rm -f v2ray-installer.sh
 ```
 来源：[下载安装 · Project V 官方网站](https://www.v2ray.com/chapter_00/install.html)
