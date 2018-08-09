@@ -72,19 +72,19 @@ wget -O HTTP2.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/m
 ```bash
 wget -O HTTP2.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/HTTP2-CentOS.sh && bash HTTP2.sh
 ```
-### mKCP for Debian、Ubuntu（未经过测试）
+### mKCP for Debian、Ubuntu
 ```
 wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP.sh && bash mKCP.sh
 ```
-### mKCP for CentOS（未经过测试）
+### mKCP for CentOS
 ```bash
 wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-CentOS.sh && bash mKCP.sh
 ```
-### mKCP for Debian、Ubuntu with wechat-vedio mask（未经过测试）
+### mKCP for Debian、Ubuntu with wechat-vedio mask
 ```bash
 wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio.sh && bash mKCP.sh
 ```
-### mKCP for CentOS with wechat-vedio mask（未经过测试）
+### mKCP for CentOS with wechat-vedio mask
 ```bash
 wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio-CentOS.sh && bash mKCP.sh
 ```
