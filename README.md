@@ -12,7 +12,7 @@
     - [WebSockets for CentOS](#websockets-for-centos)
     - [HTTP2 for Debian、Ubuntu](#http2-for-debianubuntu未经过测试)
     - [HTTP2 for CentOS](#http2-for-centos)
-- [安装 mKCP 的伪装版本](#安装-mKCP-的伪装版本)
+- [安装 mKCP 的伪装版本](#安装-mkcp-的伪装版本)
     - [mKCP for Debian、Ubuntu with wechat-vedio mask](#mkcp-for-debianubuntu-with-wechat-vedio-mask)
     - [mKCP for CentOS with wechat-vedio mask](#mkcp-for-centos-with-wechat-vedio-mask)
 - [安装附带 BBRLKL 的版本](#安装附带-bbrlkl-的版本)
