@@ -98,7 +98,7 @@ cat >> ${V2RAY_CONFIG} << EOF
                     {
 EOF
 
-echo -e "                        \"id\": ${UUID}," >> ${V2RAY_CONFIG}
+echo -e "                        \"id\": \"${UUID}\"," >> ${V2RAY_CONFIG}
 
 cat >> ${V2RAY_CONFIG} << EOF
                         "alterId": 64
