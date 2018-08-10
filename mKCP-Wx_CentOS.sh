@@ -21,8 +21,8 @@ StatusEcho(){
     fi
 }
 
-stty erase '^H' && read -p "请输入连接端口（默认：53） => " PORT
-[[ -z ${PORT} ]] && PORT="53"
+stty erase '^H' && read -p "请输入连接端口（默认：5353） => " PORT
+[[ -z ${PORT} ]] && PORT="5353"
 
 yum install wget -y
 StatusEcho "安装 WGET"
@@ -68,7 +68,7 @@ cat >> ${V2RAY_CONFIG} << EOF
                 "readBufferSize": 2,
                 "writeBufferSize": 2,
                 "header": {
-                    "type": "none"
+                    "type": "wechat-vedio"
                 }
             }
         }
@@ -132,9 +132,9 @@ EOF
 service v2ray restart
 StatusEcho "V2RAY 加载配置"
 
-echo -e "${INFO} ${GREENBG} V2RAY mKCP 安装成功！${FONT} "
+echo -e "${INFO} ${GREENBG} V2RAY mKCP + 微信视频伪装 安装成功！${FONT} "
 echo -e "${INFO} ${REDBG} 端口： ${FONT} ${PORT}"
 echo -e "${INFO} ${REDBG} ID： ${FONT} ${UUID}"
 
 rm -f v2ray-installer.sh > /dev/null 2>&1
-rm -f mKCP.sh > /dev/null 2>&1
+rm -f mKCP-Wx.sh > /dev/null 2>&1

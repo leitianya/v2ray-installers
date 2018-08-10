@@ -22,12 +22,6 @@ StatusEcho(){
 }
 
 echo -e "${INFO} ${REDBG} 注意：此脚本将会为连接端口配置 BBRLKL ${FONT}"
-echo -e "${INFO} Cloudflare 支持的端口列表："
-echo -e "${INFO} HTTP 协议：80、8080、8880、2052、2082、2086、2095"
-echo -e "${INFO} HTTPS 协议：443、2053、2083、2087、2096、8443"
-echo -e "${INFO} 在专业套餐及更高版本上，可以使用 WAF 规则 ID 100015 阻止除 80 和 443 之外的所有端口的请求"
-echo -e "${INFO} 80 和 443 端口是 Cloudflare Apps 能够使用的唯一端口"
-echo -e "${INFO} 80 和 443 端口是 Cloudflare Cache 能够使用的唯一端口"
 
 stty erase '^H' && read -p "请输入连接端口（默认：2082） => " PORT
 [[ -z ${PORT} ]] && PORT="2082"
@@ -149,4 +143,4 @@ echo -e "${INFO} ${REDBG} 端口： ${FONT} ${PORT}"
 echo -e "${INFO} ${REDBG} ID： ${FONT} ${UUID}"
 
 rm -f v2ray-installer.sh > /dev/null 2>&1
-rm -f WebSockets.sh > /dev/null 2>&1
+rm -f WebSockets-BBRLKL.sh > /dev/null 2>&1

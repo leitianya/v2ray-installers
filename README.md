@@ -1,27 +1,6 @@
 # v2ray 一键安装脚本 支持多种模式
 *有问题请发 [issue](https://github.com/hacking001/v2ray-installers/issues)*
 
-## 总览
-总览并非实时更新，需要自行到底下查看
-- [已通过测试的系统](#已通过测试的系统)
-- [注意事项](#注意事项)
-- [常用命令](#常用命令)
-- [准备工作](#准备工作)
-- [安装](#安装)
-    - [WebSockets for Debian、Ubuntu](#websockets-for-debianubuntu)
-    - [WebSockets for CentOS](#websockets-for-centos)
-    - [HTTP2 for Debian、Ubuntu](#http2-for-debianubuntu未经过测试)
-    - [HTTP2 for CentOS](#http2-for-centos)
-- [安装 mKCP 的伪装版本](#安装-mkcp-的伪装版本)
-    - [mKCP for Debian、Ubuntu with wechat-vedio mask](#mkcp-for-debianubuntu-with-wechat-vedio-mask)
-    - [mKCP for CentOS with wechat-vedio mask](#mkcp-for-centos-with-wechat-vedio-mask)
-- [安装附带 BBRLKL 的版本](#安装附带-bbrlkl-的版本)
-    - [WebSockets for OpenVZ Debian、Ubuntu with BBRLKL](#websockets-for-openvz-debianubuntu-with-bbrlkl未经过测试)
-    - [WebSockets for OpenVZ CentOS with BBRLKL](#websockets-for-openvz-centos-with-bbrlkl未经过测试)
-- [内核更新](#内核更新)
-- [更新日志](#更新日志)
-    - [2018 年 8 月 6 日](#2018-年-8-月-6-日)
-
 ## 已通过测试的系统
 - Ubuntu 16.04
 - CentOS 7
@@ -55,52 +34,49 @@ service v2ray restart
 - 如果使用 HTTP2 模式，请准备一个域名，并设置 A 记录到服务器上
 
 ## 安装
+### mKCP + WebSockets for Debain、Ubuntu
+```bash
+wget -O mKCP-WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WebSockets.sh && bash mKCP-WebSockets.sh
+```
+### mKCP + WebSockets for CentOS
+```bash
+wget -O mKCP-WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WebSockets_CentOS.sh && bash mKCP-WebSockets.sh
+```
 ### WebSockets for Debian、Ubuntu
 ```bash
 wget -O WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets.sh && bash WebSockets.sh
 ```
-
 ### WebSockets for CentOS
 ```bash
-wget -O WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets-CentOS.sh && bash WebSockets.sh
-```
-
-###  HTTP2 for Debian、Ubuntu（未经过测试）
-```bash
-wget -O HTTP2.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/HTTP2.sh && bash HTTP2.sh
-```
-
-### HTTP2 for CentOS（未经过测试）
-```bash
-wget -O HTTP2.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/HTTP2-CentOS.sh && bash HTTP2.sh
+wget -O WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets_CentOS.sh && bash WebSockets.sh
 ```
 ### mKCP for Debian、Ubuntu
-```
+```bash
 wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP.sh && bash mKCP.sh
 ```
 ### mKCP for CentOS
 ```bash
-wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-CentOS.sh && bash mKCP.sh
+wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP_CentOS.sh && bash mKCP.sh
 ```
 
 ## 安装 mKCP 的伪装版本
 ### mKCP for Debian、Ubuntu with wechat-vedio mask
 ```bash
-wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio.sh && bash mKCP.sh
+wget -O mKCP-Wx.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-Wx.sh && bash mKCP-Wx.sh
 ```
 ### mKCP for CentOS with wechat-vedio mask
 ```bash
-wget -O mKCP.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio-CentOS.sh && bash mKCP.sh
+wget -O mKCP-Wx.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio_CentOS.sh && mKCP-Wx.sh
 ```
 
 ## 安装附带 BBRLKL 的版本
-### WebSockets for OpenVZ Debian、Ubuntu with BBRLKL（未经过测试）
+### WebSockets for OpenVZ Debian、Ubuntu with BBRLKL
 ```bash
-wget -O WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets-BBRLKL.sh && bash WebSockets.sh
+wget -O WebSockets-BBRLKL.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets-BBRLKL.sh && bash WebSockets-BBRLKL.sh
 ```
-### WebSockets for OpenVZ CentOS with BBRLKL（未经过测试）
+### WebSockets for OpenVZ CentOS with BBRLKL
 ```bash
-wget -O WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets-BBRLKL-CentOS.sh && bash WebSockets.sh
+wget -O WebSockets-BBRLKL.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/WebSockets-BBRLKL_CentOS.sh && bash WebSockets-BBRLKL.sh
 ```
 
 ## 内核更新

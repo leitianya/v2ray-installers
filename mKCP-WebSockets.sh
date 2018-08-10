@@ -21,8 +21,17 @@ StatusEcho(){
     fi
 }
 
-stty erase '^H' && read -p "请输入连接端口（默认：53） => " PORT
-[[ -z ${PORT} ]] && PORT="53"
+echo -e "${INFO} Cloudflare 支持的端口列表："
+echo -e "${INFO} HTTP 协议：80、8080、8880、2052、2082、2086、2095"
+echo -e "${INFO} HTTPS 协议：443、2053、2083、2087、2096、8443"
+echo -e "${INFO} 在专业套餐及更高版本上，可以使用 WAF 规则 ID 100015 阻止除 80 和 443 之外的所有端口的请求"
+echo -e "${INFO} 80 和 443 端口是 Cloudflare Apps 能够使用的唯一端口"
+echo -e "${INFO} 80 和 443 端口是 Cloudflare Cache 能够使用的唯一端口"
+
+stty erase '^H' && read -p "请输入 WebSockets 连接端口（默认：2082） => " WEBSOCKETS_PORT
+[[ -z ${WEBSOCKETS_PORT} ]] && WEBSOCKETS_PORT="2082"
+stty erase '^H' && read -p "请输入 mKCP 连接端口（默认：5353） => " MKCP_PORT
+[[ -z ${MKCP_PORT} ]] && MKCP_PORT="5353"
 
 apt update
 StatusEcho "更新 APT"
@@ -42,7 +51,7 @@ cat > ${V2RAY_CONFIG} << EOF
     "inbound": {
 EOF
 
-echo -e "        \"port\": ${PORT}," >> ${V2RAY_CONFIG}
+echo -e "        \"port\": ${MKCP_PORT}," >> ${V2RAY_CONFIG}
 
 cat >> ${V2RAY_CONFIG} << EOF
         "listen": "0.0.0.0",
@@ -70,11 +79,37 @@ cat >> ${V2RAY_CONFIG} << EOF
                 "readBufferSize": 2,
                 "writeBufferSize": 2,
                 "header": {
-                    "type": "wechat-video"
+                    "type": "none"
                 }
             }
         }
     },
+    "inboundDetour": [
+        {
+EOF
+
+echo -e "            \"port\": ${WEBSOCKETS_PORT}," >> ${V2RAY_CONFIG}
+
+cat >> ${V2RAY_CONFIG} << EOF
+            "listen": "0.0.0.0",
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+EOF
+
+echo -e "                        \"id\": ${UUID}," >> ${V2RAY_CONFIG}
+
+cat >> ${V2RAY_CONFIG} << EOF
+                        "alterId": 64
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws"
+            }
+        }
+    ]
     "outbound": {
         "protocol": "freedom",
         "settings": {}
@@ -134,9 +169,10 @@ EOF
 service v2ray restart
 StatusEcho "V2RAY 加载配置"
 
-echo -e "${INFO} ${GREENBG} V2RAY mKCP 微信视频伪装 安装成功！${FONT} "
-echo -e "${INFO} ${REDBG} 端口： ${FONT} ${PORT}"
+echo -e "${INFO} ${GREENBG} V2RAY WebSockets + mKCP 安装成功！${FONT} "
+echo -e "${INFO} ${REDBG} WebSockets 端口： ${FONT} ${WEBSOCKETS_PORT}"
+echo -e "${INFO} ${REDBG} mKCP 端口： ${FONT} ${MKCP_PORT}"
 echo -e "${INFO} ${REDBG} ID： ${FONT} ${UUID}"
 
 rm -f v2ray-installer.sh > /dev/null 2>&1
-rm -f mKCP.sh > /dev/null 2>&1
+rm -f mKCP-WebSockets.sh > /dev/null 2>&1

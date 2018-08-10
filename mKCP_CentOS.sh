@@ -21,19 +21,13 @@ StatusEcho(){
     fi
 }
 
-echo -e "${INFO} ${REDBG} 注意：此脚本将会为连接端口配置 BBRLKL ${FONT}"
+stty erase '^H' && read -p "请输入连接端口（默认：5353） => " PORT
+[[ -z ${PORT} ]] && PORT="5353"
 
-stty erase '^H' && read -p "请输入连接端口（默认：2082） => " PORT
-[[ -z ${PORT} ]] && PORT="2082"
-
-apt update
-StatusEcho "更新 APT"
-apt install wget -y
+yum install wget -y
 StatusEcho "安装 WGET"
-apt install curl -y
+yum install curl -y
 StatusEcho "安装 CURL"
-apt install iptables -y
-StatusEcho "安装 IPTABLES"
 wget -O v2ray-installer.sh https://install.direct/go.sh
 StatusEcho "获取 V2RAY 安装脚本"
 bash v2ray-installer.sh --force
@@ -64,7 +58,19 @@ cat >> ${V2RAY_CONFIG} << EOF
             ]
         },
         "streamSettings": {
-            "network": "ws"
+            "network": "kcp",
+            "kcpSettings": {
+                "mtu": 1350,
+                "tti": 50,
+                "uplinkCapacity": 10,
+                "downlinkCapacity": 10,
+                "congestion": true,
+                "readBufferSize": 2,
+                "writeBufferSize": 2,
+                "header": {
+                    "type": "none"
+                }
+            }
         }
     },
     "outbound": {
@@ -126,23 +132,9 @@ EOF
 service v2ray restart
 StatusEcho "V2RAY 加载配置"
 
-[[ ! -d /home/BBRLKL ]] && mkdir -p /home/BBR-LKL
-wget -O /home/BBRLKL/rinetd https://raw.githubusercontent.com/hacking001/v2ray-installers/master/binaries/rinetd
-StatusEcho "获取 RINETD"
-chmod +x /home/BBRLKL/rinetd
-echo "0.0.0.0 ${PORT} 0.0.0.0 ${PORT}" >> /home/BBRLKL/ports.conf
-IFACE=`ip -4 addr | awk '{if ($1 ~ /inet/ && $NF ~ /^[ve]/) {a=$NF}} END{print a}'`
-echo -e "#!/bin/bash\ncd /home/BBRLKL\nnohup ./rinetd -f -c ports.conf raw ${IFACE} &" > /home/BBRLKL/start.sh
-chmod +x /home/BBRLKL/start.sh
-echo -e "#!/bin/bash\n" > /etc/rc.local
-echo "/bin/bash /home/BBRLKL/start.sh" >> /etc/rc.local
-chmod +x /etc/rc.local
-/bin/bash /home/BBRLKL/start.sh
-echo -e "${INFO} BBRLKL 配置完成"
-
-echo -e "${INFO} ${GREENBG} V2RAY WebSockets + BBRLKL 安装成功！${FONT} "
+echo -e "${INFO} ${GREENBG} V2RAY mKCP 安装成功！${FONT} "
 echo -e "${INFO} ${REDBG} 端口： ${FONT} ${PORT}"
 echo -e "${INFO} ${REDBG} ID： ${FONT} ${UUID}"
 
 rm -f v2ray-installer.sh > /dev/null 2>&1
-rm -f WebSockets-BBRLKL.sh > /dev/null 2>&1
+rm -f mKCP.sh > /dev/null 2>&1
