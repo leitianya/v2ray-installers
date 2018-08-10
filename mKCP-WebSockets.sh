@@ -109,7 +109,7 @@ cat >> ${V2RAY_CONFIG} << EOF
                 "network": "ws"
             }
         }
-    ]
+    ],
     "outbound": {
         "protocol": "freedom",
         "settings": {}
