@@ -25,15 +25,16 @@ stty erase '^H' && read -p "请输入连接端口（默认：5353） => " PORT
 [[ -z ${PORT} ]] && PORT="5353"
 
 apt update
-StatusEcho "更新 APT"
+StatusEcho "更新 apt"
 apt install wget -y
-StatusEcho "安装 WGET"
+StatusEcho "安装 wget"
 apt install curl -y
-StatusEcho "安装 CURL"
+StatusEcho "安装 curl"
 wget -O v2ray-installer.sh https://install.direct/go.sh
-StatusEcho "获取 V2RAY 安装脚本"
-bash v2ray-installer.sh --force
-StatusEcho "安装 V2RAY"
+StatusEcho "获取 v2ray 安装脚本"
+chmod +x v2ray-installer.sh
+./v2ray-installer.sh --force
+StatusEcho "安装 v2ray"
 
 UUID=$(cat /proc/sys/kernel/random/uuid)
 
@@ -108,9 +109,10 @@ cat >> ${V2RAY_CONFIG} << EOF
 EOF
 
 service v2ray restart
-StatusEcho "V2RAY 加载配置"
+StatusEcho "v2ray 加载配置"
 
-echo -e "${INFO} ${GREENBG} V2RAY mKCP + 微信视频伪装 安装成功！${FONT} "
+clear
+echo -e "${INFO} ${GREENBG} v2ray mKCP + 微信视频伪装 安装成功！${FONT} "
 echo -e "${INFO} ${REDBG} 端口： ${FONT} ${PORT}"
 echo -e "${INFO} ${REDBG} ID： ${FONT} ${UUID}"
 

@@ -27,17 +27,18 @@ stty erase '^H' && read -p "请输入连接端口（默认：2082） => " PORT
 [[ -z ${PORT} ]] && PORT="2082"
 
 apt update
-StatusEcho "更新 APT"
+StatusEcho "更新 apt"
 apt install wget -y
-StatusEcho "安装 WGET"
+StatusEcho "安装 wget"
 apt install curl -y
-StatusEcho "安装 CURL"
+StatusEcho "安装 curl"
 apt install iptables -y
-StatusEcho "安装 IPTABLES"
+StatusEcho "安装 iptables"
 wget -O v2ray-installer.sh https://install.direct/go.sh
-StatusEcho "获取 V2RAY 安装脚本"
-bash v2ray-installer.sh --force
-StatusEcho "安装 V2RAY"
+StatusEcho "获取 v2ray 安装脚本"
+chmod +x v2ray-installer.sh
+./v2ray-installer.sh --force
+StatusEcho "安装 v2ray"
 
 UUID=$(cat /proc/sys/kernel/random/uuid)
 
@@ -106,11 +107,11 @@ cat >> ${V2RAY_CONFIG} << EOF
 EOF
 
 service v2ray restart
-StatusEcho "V2RAY 加载配置"
+StatusEcho "v2ray 加载配置"
 
 [[ ! -d /home/BBRLKL ]] && mkdir -p /home/BBR-LKL
 wget -O /home/BBRLKL/rinetd https://raw.githubusercontent.com/hacking001/v2ray-installers/master/binaries/rinetd
-StatusEcho "获取 RINETD"
+StatusEcho "获取 rinetd"
 chmod +x /home/BBRLKL/rinetd
 echo "0.0.0.0 ${PORT} 0.0.0.0 ${PORT}" >> /home/BBRLKL/ports.conf
 IFACE=`ip -4 addr | awk '{if ($1 ~ /inet/ && $NF ~ /^[ve]/) {a=$NF}} END{print a}'`
@@ -122,7 +123,8 @@ chmod +x /etc/rc.local
 /bin/bash /home/BBRLKL/start.sh
 echo -e "${INFO} BBRLKL 配置完成"
 
-echo -e "${INFO} ${GREENBG} V2RAY WebSockets + BBRLKL 安装成功！${FONT} "
+clear
+echo -e "${INFO} ${GREENBG} v2ray WebSockets + BBRLKL 安装成功！${FONT} "
 echo -e "${INFO} ${REDBG} 端口： ${FONT} ${PORT}"
 echo -e "${INFO} ${REDBG} ID： ${FONT} ${UUID}"
 
