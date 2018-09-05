@@ -1,6 +1,26 @@
 # v2ray 一键安装脚本 支持多种模式
 *有问题请发 [issue](https://github.com/hacking001/v2ray-installers/issues)*
 
+## 总览
+- [已测试通过的系统](#已测试通过的系统)
+- [注意事项](#注意事项)
+- [常用命令](#常用命令)
+- [安装](#安装)
+    - [mKCP + WebSockets for Debian、Ubuntu](#mkcp--websockets-for-debainubuntu)
+    - [mKCP + WebSockets for CentOS](#mkcp--websockets-for-centos)
+    - [WebSockets for Debian、Ubuntu](#websockets-for-debianubuntu)
+    - [WebSockets for CentOS](#websockets-for-centos)
+    - [mKCP for Debian、Ubuntu](#mkcp-for-debianubuntu)
+    - [mKCP for CentOS](#mkcp-for-centos)
+- [安装 mKCP 的伪装版本](#安装-mkcp-的伪装版本)
+    - [mKCP for Debian、Ubuntu with wechat-vedio mask](#mkcp-for-debianubuntu-with-wechat-vedio-mask)
+    - [mKCP for CentOS with wechat-vedio mask](#mkcp-for-centos-with-wechat-vedio-mask)
+- [安装附带 BBRLKL 的版本](#安装附带-bbrlkl-的版本)
+    - [WebSockets for OpenVZ Debian、Ubuntu with BBRLKL](#websockets-for-openvz-debianubuntu-with-bbrlkl)
+    - [WebSockets for OpenVZ CentOS](#websockets-for-openvz-centos-with-bbrlkl)
+- [内核更新](#内核更新)
+- [更新日志](#更新日志)
+
 ## 已通过测试的系统
 - Ubuntu 16.04
 - CentOS 7
@@ -29,9 +49,6 @@ service v2ray stop
 ```bash
 service v2ray restart
 ```
-
-## 准备工作
-- 如果使用 HTTP2 模式，请准备一个域名，并设置 A 记录到服务器上
 
 ## 安装
 ### mKCP + WebSockets for Debain、Ubuntu
