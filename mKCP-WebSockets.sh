@@ -71,18 +71,10 @@ cat >> ${V2RAY_CONFIG} << EOF
         "streamSettings": {
             "network": "kcp",
             "kcpSettings": {
-                "mtu": 1350,
-                "tti": 50,
-                "uplinkCapacity": 10,
-                "downlinkCapacity": 10,
-                "congestion": true,
-                "readBufferSize": 2,
-                "writeBufferSize": 2,
-                "header": {
-                    "type": "none"
-                }
+                "congestion": true
             }
-        }
+        },
+        "tag": "defaultInbound"
     },
     "inboundDetour": [
         {
@@ -107,19 +99,16 @@ cat >> ${V2RAY_CONFIG} << EOF
             },
             "streamSettings": {
                 "network": "ws"
-            }
+            },
+            "tag": "webSocketsInbound"
         }
     ],
     "outbound": {
         "protocol": "freedom",
-        "settings": {}
+        "settings": {},
+        "tag": "defaultOutbound"
     },
     "outboundDetour": [
-        {
-            "protocol": "freedom",
-            "settings": {},
-            "tag": "direct"
-        },
         {
             "protocol": "blackhole",
             "settings": {
@@ -127,7 +116,7 @@ cat >> ${V2RAY_CONFIG} << EOF
                     "type": "http"
                 }
             },
-            "tag": "shield"
+            "tag": "discardOutbound"
         }
     ],
     "routing": {
@@ -136,29 +125,14 @@ cat >> ${V2RAY_CONFIG} << EOF
             "domainStrategy": "IPIfNonMatch",
             "rules": [
                 {
-                    "type": "chinaip",
-                    "outboundTag": "shield"
+                    "type": "field",
+                    "ip": "geoip:cn",
+                    "outboundTag": "discardOutbound"
                 },
                 {
                     "type": "field",
-                    "ip": [
-                        "0.0.0.0/8",
-                        "10.0.0.0/8",
-                        "100.64.0.0/10",
-                        "127.0.0.0/8",
-                        "169.254.0.0/16",
-                        "172.16.0.0/12",
-                        "192.0.0.0/24",
-                        "192.0.2.0/24",
-                        "192.168.0.0/16",
-                        "198.18.0.0/15",
-                        "198.51.100.0/24",
-                        "203.0.114.0/24",
-                        "::1/128",
-                        "fc00::/7",
-                        "fe00::/10"
-                    ],
-                    "outboundTag": "shield"
+                    "ip": "geoip:private",
+                    "outboundTag": "discardOutbound"
                 }
             ]
         }
