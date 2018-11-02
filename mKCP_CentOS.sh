@@ -38,50 +38,6 @@ UUID=$(cat /proc/sys/kernel/random/uuid)
 
 cat > ${V2RAY_CONFIG} << EOF
 {
-    "inbound": {
-EOF
-
-echo -e "        \"port\": ${PORT}," >> ${V2RAY_CONFIG}
-
-cat >> ${V2RAY_CONFIG} << EOF
-        "listen": "0.0.0.0",
-        "protocol": "vmess",
-        "settings": {
-            "clients": [
-                {
-EOF
-
-echo -e "                    \"id\":\"${UUID}\"," >> ${V2RAY_CONFIG}
-
-cat >> ${V2RAY_CONFIG} << EOF
-                    "alterId": 64
-                }
-            ]
-        },
-        "streamSettings": {
-            "network": "kcp",
-            "kcpSettings": {
-                "congestion": true
-            }
-        },
-        "tag": "defaultInbound"
-    },
-    "outbound": {
-        "protocol": "freedom",
-        "settings": {},
-        "tag": "defaultOutbound"
-    },
-    "outboundDetour": [
-        {
-            "protocol": "blackhole",
-            "settings": {
-                "response": {
-                    "type": "http"
-                }
-            },
-            "tag": "discardOutbound"
-        }
-    ],
     "routing": {
         "strategy": "rules",
         "settings": {
@@ -90,16 +46,62 @@ cat >> ${V2RAY_CONFIG} << EOF
                 {
                     "type": "field",
                     "ip": "geoip:cn",
-                    "outboundTag": "discardOutbound"
+                    "outboundTag": "blockOutbound"
                 },
                 {
                     "type": "field",
                     "ip": "geoip:private",
-                    "outboundTag": "discardOutbound"
+                    "outboundTag": "blockOutbound"
                 }
             ]
         }
-    }
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+EOF
+
+echo -e "            \"port\": ${PORT}," >> ${V2RAY_CONFIG}
+
+cat >> ${V2RAY_CONFIG} << EOF
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+EOF
+
+echo -e "                        \"id\":\"${UUID}\"," >> ${V2RAY_CONFIG}
+
+cat >> ${V2RAY_CONFIG} << EOF
+                        "alterId": 0
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "kcp",
+                "kcpSettings": {
+                    "congestion": true
+                }
+            },
+            "tag": "defaultInbound"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {},
+            "tag": "defaultOutbound"
+        },
+        {
+            "protocol": "blackhole",
+            "settings": {
+                "response": {
+                    "type": "http"
+                }
+            },
+            "tag": "blockOutbound"
+        }
+    ]
 }
 EOF
 
@@ -110,6 +112,7 @@ clear
 echo -e "${INFO} ${GREENBG} v2ray mKCP 安装成功！${FONT} "
 echo -e "${INFO} ${REDBG} 端口： ${FONT} ${PORT}"
 echo -e "${INFO} ${REDBG} ID： ${FONT} ${UUID}"
+echo -e "${INFO} ${REGBG} alterId： ${FONT} 0"
 
 rm -f v2ray-installer.sh > /dev/null 2>&1
 rm -f mKCP.sh > /dev/null 2>&1
