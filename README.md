@@ -103,5 +103,7 @@ wget -O v2ray-installer.sh https://install.direct/go.sh && bash v2ray-installer.
 来源：[下载安装 · Project V 官方网站](https://www.v2ray.com/chapter_00/install.html)
 
 ## 更新日志
+### 2018 年 11 月 2 日
+- 更新配置文件格式，采用新版的配置格式
 ### 2018 年 8 月 6 日
 - 项目初始化
