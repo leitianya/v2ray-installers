@@ -45,79 +45,8 @@ StatusEcho "安装 v2ray"
 
 UUID=$(cat /proc/sys/kernel/random/uuid)
 
-cat > ${V2RAY_CONFIG} << EOF
+cat > ${V2RAY_CONFIG_PATH} << EOF
 {
-    "inbound": {
-EOF
-
-echo -e "        \"port\": ${MKCP_PORT}," >> ${V2RAY_CONFIG}
-
-cat >> ${V2RAY_CONFIG} << EOF
-        "listen": "0.0.0.0",
-        "protocol": "vmess",
-        "settings": {
-            "clients": [
-                {
-EOF
-
-echo -e "                    \"id\":\"${UUID}\"," >> ${V2RAY_CONFIG}
-
-cat >> ${V2RAY_CONFIG} << EOF
-                    "alterId": 64
-                }
-            ]
-        },
-        "streamSettings": {
-            "network": "kcp",
-            "kcpSettings": {
-                "congestion": true
-            }
-        },
-        "tag": "defaultInbound"
-    },
-    "inboundDetour": [
-        {
-EOF
-
-echo -e "            \"port\": ${WEBSOCKETS_PORT}," >> ${V2RAY_CONFIG}
-
-cat >> ${V2RAY_CONFIG} << EOF
-            "listen": "0.0.0.0",
-            "protocol": "vmess",
-            "settings": {
-                "clients": [
-                    {
-EOF
-
-echo -e "                        \"id\": \"${UUID}\"," >> ${V2RAY_CONFIG}
-
-cat >> ${V2RAY_CONFIG} << EOF
-                        "alterId": 64
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "ws"
-            },
-            "tag": "webSocketsOutbound"
-        }
-    ],
-    "outbound": {
-        "protocol": "freedom",
-        "settings": {},
-        "tag": "defaultOutbound"
-    },
-    "outboundDetour": [
-        {
-            "protocol": "blackhole",
-            "settings": {
-                "response": {
-                    "type": "http"
-                }
-            },
-            "tag": "discardOutbound"
-        }
-    ],
     "routing": {
         "strategy": "rules",
         "settings": {
@@ -125,17 +54,86 @@ cat >> ${V2RAY_CONFIG} << EOF
             "rules": [
                 {
                     "type": "field",
-                    "ip": "geoip:cn",
-                    "outboundTag": "discardOutbound"
-                },
-                {
-                    "type": "field",
-                    "ip": "geoip:private",
-                    "outboundTag": "discardOutbound"
+                    "ip": [
+                        "geoip:cn",
+                        "geoip:private"
+                    ],
+                    "outboundTag": "blockOutbound"
                 }
             ]
         }
-    }
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+EOF
+
+echo -e "            \"port\": ${MKCP_PORT}," >> ${V2RAY_CONFIG_PATH}
+
+cat >> ${V2RAY_CONFIG_PATH} << EOF
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+EOF
+
+echo -e "                        \"id\": \"${UUID}\"," >> ${V2RAY_CONFIG_PATH}
+
+cat >> ${V2RAY_CONFIG_PATH} << EOF
+                        "alterId": 0
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "kcp",
+                "kcpSettings": {
+                    "congestion": true
+                }
+            },
+            "tag": "defaultInbound"
+        },
+        {
+            "listen": "0.0.0.0",
+EOF
+
+echo -e "            \"port\": ${WEBSOCKETS_PORT}," >> ${V2RAY_CONFIG_PATH}
+
+cat >> ${V2RAY_CONFIG_PATH} << EOF
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+EOF
+
+echo -e "                        \"id\": \"${UUID}\"," >> ${V2RAY_CONFIG_PATH}
+
+cat >> ${V2RAY_CONFIG_PATH} << EOF
+                        "alterId": 0
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws"
+            },
+            "tag": "webSocketInbound"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {},
+            "tag": "directOutbound"
+        },
+        {
+            "protocol": "blackhole",
+            "settings": {
+                "response": {
+                    "type": "http"
+                }
+            },
+            "tag": "blockOutbound"
+        }
+    ]
 }
 EOF
 
@@ -147,6 +145,7 @@ echo -e "${INFO} ${GREENBG} v2ray WebSockets + mKCP 安装成功！${FONT} "
 echo -e "${INFO} ${REDBG} WebSockets 端口： ${FONT} ${WEBSOCKETS_PORT}"
 echo -e "${INFO} ${REDBG} mKCP 端口： ${FONT} ${MKCP_PORT}"
 echo -e "${INFO} ${REDBG} ID： ${FONT} ${UUID}"
+echo -e "${INFO} ${REGBG} alterId： ${FONT} 0"
 
 rm -f v2ray-installer.sh > /dev/null 2>&1
 rm -f mKCP-WebSockets.sh > /dev/null 2>&1
