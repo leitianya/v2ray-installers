@@ -15,6 +15,8 @@
 - [安装 mKCP 的伪装版本](#安装-mkcp-的伪装版本)
     - [mKCP for Debian、Ubuntu with wechat-vedio mask](#mkcp-for-debianubuntu-with-wechat-vedio-mask)
     - [mKCP for CentOS with wechat-vedio mask](#mkcp-for-centos-with-wechat-vedio-mask)
+    - [mKCP for Debian、Ubuntu with DTLS mask](#mkcp-for-debianubuntu-with-dtls-mask)
+    - [mKCP for CentOS with DTLS mask](#mkcp-for-centos-with-dtls-mask)
 - [安装附带 BBRLKL 的版本](#安装附带-bbrlkl-的版本)
     - [WebSockets for OpenVZ Debian、Ubuntu with BBRLKL](#websockets-for-openvz-debianubuntu-with-bbrlkl)
     - [WebSockets for OpenVZ CentOS](#websockets-for-openvz-centos-with-bbrlkl)
@@ -85,6 +87,14 @@ wget -O mKCP-Wx.sh https://raw.githubusercontent.com/hacking001/v2ray-installers
 ```bash
 wget -O mKCP-Wx.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WeChatVedio_CentOS.sh && mKCP-Wx.sh
 ```
+### mKCP for Debian、Ubuntu with DTLS mask
+```bash
+wget -O mKCP-DTLS.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-DTLS.sh && bash mKCP-DTLS.sh
+```
+### mKCP for CentOS with DTLS mask
+```bash
+wget -O mKCP-DTLS.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-DTLS_CentOS.sh && mKCP-DTLS.sh
+```
 
 ## 安装附带 BBRLKL 的版本
 ### WebSockets for OpenVZ Debian、Ubuntu with BBRLKL
@@ -103,6 +113,8 @@ wget -O v2ray-installer.sh https://install.direct/go.sh && bash v2ray-installer.
 来源：[下载安装 · Project V 官方网站](https://www.v2ray.com/chapter_00/install.html)
 
 ## 更新日志
+### 2018 年 11 月 13 日
+- 增加 mKCP 的 DTLS 伪装模式
 ### 2018 年 11 月 2 日
 - 更新配置文件格式，采用新版的配置格式
 ### 2018 年 8 月 6 日
