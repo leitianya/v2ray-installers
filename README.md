@@ -35,7 +35,7 @@
 - v2ray 依赖系统时间，请确保系统 UTC 时间误差在三分钟以内，时区无关
 - 与 Cloudflare 搭配的话请不要随便修改您的域名在 Cloudflare 上的设置（如果您不懂的话）
 - WebSockets 模式支持 Cloudflare 前置，默认端口安装即可（懂的请随意）
-- 如果 WebSockets 模式需要搭配 Cloudflare + SSL，可以将 v2ray 安装于 80 端口，并且在 Cloudflare 的加密板块中将模式调成 Flexible
+- 如果 WebSockets 模式需要搭配 Cloudflare + SSL，可以将 v2ray 安装于 80 端口，并且在 Cloudflare 的加密板块中将模式调成 `Flexible`（在客户端连接时使用 443 端口并配置 SSL 安全就行）
 
 ## 常用命令
 检查 v2ray 状态
