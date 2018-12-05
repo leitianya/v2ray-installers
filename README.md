@@ -17,6 +17,8 @@
     - [mKCP for CentOS with wechat-vedio mask](#mkcp-for-centos-with-wechat-vedio-mask)
     - [mKCP for Debian、Ubuntu with DTLS mask](#mkcp-for-debianubuntu-with-dtls-mask)
     - [mKCP for CentOS with DTLS mask](#mkcp-for-centos-with-dtls-mask)
+    - [mKCP for Debian、Ubuntu with WireGuard mask](#mkcp-for-debianubuntu-with-wireguard-mask)
+    - [mKCP for CentOS with WireGuard mask](#mkcp-for-centos-with-wireguard-mask)
 - [安装附带 BBRLKL 的版本](#安装附带-bbrlkl-的版本)
     - [WebSockets for OpenVZ Debian、Ubuntu with BBRLKL](#websockets-for-openvz-debianubuntu-with-bbrlkl)
     - [WebSockets for OpenVZ CentOS](#websockets-for-openvz-centos-with-bbrlkl)
@@ -98,6 +100,14 @@ wget -O mKCP-DTLS.sh https://raw.githubusercontent.com/hacking001/v2ray-installe
 ```bash
 wget -O mKCP-DTLS.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-DTLS_CentOS.sh && mKCP-DTLS.sh
 ```
+### mKCP for Debian、Ubuntu with WireGuard mask
+```bash
+wget -O mKCP-WireGuard.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WireGuard.sh && bash mKCP-WireGuard.sh
+```
+### mKCP for CentOS with WireGuard mask
+```bash
+wget -O mKCP-WireGuard.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WireGuard_CentOS.sh && bash mKCP-WireGuard.sh
+```
 
 ## 安装附带 BBRLKL 的版本
 ### WebSockets for OpenVZ Debian、Ubuntu with BBRLKL
@@ -116,6 +126,9 @@ wget -O v2ray-installer.sh https://install.direct/go.sh && bash v2ray-installer.
 来源：[下载安装 · Project V 官方网站](https://www.v2ray.com/chapter_00/install.html)
 
 ## 更新日志
+### 2018 年 12 月 5 日
+- 将所有文本文件的换行模式换成 LF 模式
+- 增加 mKCP 的 WireGuard 伪装模式
 ### 2018 年 11 月 13 日
 - 增加 mKCP 的 DTLS 伪装模式
 ### 2018 年 11 月 2 日
