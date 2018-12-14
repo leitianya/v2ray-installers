@@ -12,12 +12,15 @@ defaultConf = {
 			'rules': [
 				{
 					'type': 'field',
-					'ip': 'geoip:cn',
+					'ip': [
+						'geoip:cn',
+						'geoip:private'
+					],
 					'outboundTag': 'blockOutbound'
 				},
 				{
 					'type': 'field',
-					'ip': 'geosite:cn',
+					'domain': 'geosite:cn',
 					'outboundTag': 'blockOutbound'
 				}
 			]
@@ -83,7 +86,7 @@ def main():
 		return
 
 	print('1. TCP 2. WebSockets 3. mKCP')
-	print('请选择传输模式（输入序列号） => ', end = '')
+	print('请选择传输模式（输入序列号，默认 1） => ', end = '')
 	try:
 		CFG_MODE = int(input())
 	except:
@@ -100,8 +103,7 @@ def main():
 			print('您已选择 mKCP 传输模式 ...')
 			defaultConf['inbounds'][0]['streamSettings']['network'] = 'mkcp'
 		else:
-			print('选择有误 ...')
-			return
+			defaultConf['inbounds'][0]['streamSettings']['network'] = 'tcp'
 	
 	print('Cloudflare 支持的端口列表：')
 	print('HTTP 协议：80、8080、8880、2052、2082、2086、2095')
@@ -113,7 +115,6 @@ def main():
 	CFG_PORT = input()
 	if CFG_PORT == '':
 		CFG_PORT = 2082
-		return
 	else:
 		try:
 			CFG_PORT = int(CFG_PORT)
@@ -145,8 +146,10 @@ def main():
 		print('成功，安装中 ...', end = ' ')
 
 		if execute('chmod +x v2ray-installer.sh') and execute('./v2ray-installer.sh --force'):
+			os.remove('v2ray-installer.sh')
 			print('成功 ...')
 		else:
+			os.remove('v2ray-installer.sh')
 			print('失败 ...')
 			return
 	else:

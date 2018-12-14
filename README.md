@@ -6,6 +6,7 @@
 - [注意事项](#注意事项)
 - [常用命令](#常用命令)
 - [安装](#安装)
+    - [All in One](#all-in-one)
     - [mKCP + WebSockets for Debian、Ubuntu](#mkcp--websockets-for-debainubuntu)
     - [mKCP + WebSockets for CentOS](#mkcp--websockets-for-centos)
     - [WebSockets for Debian、Ubuntu](#websockets-for-debianubuntu)
@@ -58,6 +59,12 @@ service v2ray restart
 ```
 
 ## 安装
+### All in One
+*警告：这是测试功能，并不保证可以运行*
+*已在 Ubuntu 16.04 + Python 3 环境下测试通过*
+```bash
+wget -O v2ray-installers.py https://raw.githubusercontent.com/hacking001/v2ray-installers/master/v2ray-installers.py && python3 v2ray-installers.py
+```
 ### mKCP + WebSockets for Debain、Ubuntu
 ```bash
 wget -O mKCP-WebSockets.sh https://raw.githubusercontent.com/hacking001/v2ray-installers/master/mKCP-WebSockets.sh && bash mKCP-WebSockets.sh
@@ -126,6 +133,8 @@ wget -O v2ray-installer.sh https://install.direct/go.sh && bash v2ray-installer.
 来源：[下载安装 · Project V 官方网站](https://www.v2ray.com/chapter_00/install.html)
 
 ## 更新日志
+### 2018 年 12 月 14 日
+- 推出 `All in One` Python 脚本（测试中）
 ### 2018 年 12 月 5 日
 - 将所有文本文件的换行模式换成 LF 模式
 - 增加 mKCP 的 WireGuard 伪装模式
