@@ -84,19 +84,24 @@ def main():
 
 	print('1. TCP 2. WebSockets 3. mKCP')
 	print('请选择传输模式（输入序列号） => ', end = '')
-	CFG_MODE = input()
-	if CFG_MODE == 1:
-		print('您已选择 TCP 传输模式 ...')
-		defaultConf['inbounds'][0]['streamSettings']['network'] = 'tcp'
-	elif CFG_MODE == 2:
-		print('您已选择 WebSockets 传输模式 ...')
-		defaultConf['inbounds'][0]['streamSettings']['network'] = 'ws'
-	elif CFG_MODE == 3:
-		print('您已选择 mKCP 传输模式 ...')
-		defaultConf['inbounds'][0]['streamSettings']['network'] = 'mkcp'
-	else:
+	try:
+		CFG_MODE = int(input())
+	except:
 		print('选择有误 ...')
 		return
+	else:
+		if CFG_MODE == 1:
+			print('您已选择 TCP 传输模式 ...')
+			defaultConf['inbounds'][0]['streamSettings']['network'] = 'tcp'
+		elif CFG_MODE == 2:
+			print('您已选择 WebSockets 传输模式 ...')
+			defaultConf['inbounds'][0]['streamSettings']['network'] = 'ws'
+		elif CFG_MODE == 3:
+			print('您已选择 mKCP 传输模式 ...')
+			defaultConf['inbounds'][0]['streamSettings']['network'] = 'mkcp'
+		else:
+			print('选择有误 ...')
+			return
 	
 	print('Cloudflare 支持的端口列表：')
 	print('HTTP 协议：80、8080、8880、2052、2082、2086、2095')
