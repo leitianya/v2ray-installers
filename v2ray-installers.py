@@ -61,8 +61,6 @@ defaultConf = {
 }
 
 def execute(text):
-	import os
-
 	try:
 		code = os.system(text)
 		if code != 0:
@@ -79,12 +77,11 @@ def execute(text):
 
 def main():
 	import json, uuid
-
-	try:
-		input = raw_input
-	except:
-		pass
 	
+	if sys.version_info < (3, 0):
+		print('此脚本需要 Python 3 才能运行')
+		return
+
 	print('1. TCP 2. WebSockets 3. mKCP')
 	print('请选择传输模式（输入序列号） => ', end = '')
 	CFG_MODE = input()
