@@ -1,5 +1,5 @@
 # v2ray 一键安装脚本 支持多种模式
-*有问题请发 [issue](https://github.com/hacking001/v2ray-installers/issues)*
+[GitHub](https://github.com/hacking001/v2ray-installers)、[GitLab](https://gitlab.com/hacking001/v2ray-installers)、[Coding](https://dev.tencent.com/u/hacking001/p/v2ray-installers)
 
 ## 总览
 - [已测试通过的系统](#已测试通过的系统)
