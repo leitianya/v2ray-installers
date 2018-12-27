@@ -21,7 +21,7 @@ StatusEcho(){
     fi
 }
 
-stty erase '^H' && read -p "请输入连接端口（默认：5353） => " PORT
+read -e -p "请输入连接端口（默认：5353） => " PORT
 [[ -z ${PORT} ]] && PORT="5353"
 
 yum install wget -y

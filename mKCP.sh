@@ -21,7 +21,7 @@ StatusEcho(){
     fi
 }
 
-stty erase '^H' && read -p "请输入连接端口（默认：53） => " PORT
+read -e -p "请输入连接端口（默认：53） => " PORT
 [[ -z ${PORT} ]] && PORT="53"
 
 apt update

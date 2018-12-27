@@ -28,7 +28,7 @@ echo -e "${INFO} 在专业套餐及更高版本上，可以使用 WAF 规则 ID 
 echo -e "${INFO} 80 和 443 端口是 Cloudflare Apps 能够使用的唯一端口"
 echo -e "${INFO} 80 和 443 端口是 Cloudflare Cache 能够使用的唯一端口"
 
-stty erase '^H' && read -p "请输入连接端口（默认：2082） => " PORT
+read -e -p "请输入连接端口（默认：2082） => " PORT
 [[ -z ${PORT} ]] && PORT="2082"
 
 apt update

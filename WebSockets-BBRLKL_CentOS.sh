@@ -23,7 +23,7 @@ StatusEcho(){
 
 echo -e "${INFO} ${REDBG} 注意：此脚本将会为连接端口配置 BBRLKL ${FONT}"
 
-stty erase '^H' && read -p "请输入连接端口（默认：2082） => " PORT
+read -e -p "请输入连接端口（默认：2082） => " PORT
 [[ -z ${PORT} ]] && PORT="2082"
 
 yum install wget -y

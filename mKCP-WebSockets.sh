@@ -28,9 +28,9 @@ echo -e "${INFO} 在专业套餐及更高版本上，可以使用 WAF 规则 ID 
 echo -e "${INFO} 80 和 443 端口是 Cloudflare Apps 能够使用的唯一端口"
 echo -e "${INFO} 80 和 443 端口是 Cloudflare Cache 能够使用的唯一端口"
 
-stty erase '^H' && read -p "请输入 mKCP 连接端口（默认：5353） => " MKCP_PORT
+read -e -p "请输入 mKCP 连接端口（默认：5353） => " MKCP_PORT
 [[ -z ${MKCP_PORT} ]] && MKCP_PORT="5353"
-stty erase '^H' && read -p "请输入 WebSockets 连接端口（默认：2082） => " WEBSOCKETS_PORT
+read -e -p "请输入 WebSockets 连接端口（默认：2082） => " WEBSOCKETS_PORT
 [[ -z ${WEBSOCKETS_PORT} ]] && WEBSOCKETS_PORT="2082"
 
 apt update
