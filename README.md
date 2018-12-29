@@ -133,14 +133,4 @@ wget -O v2ray-installer.sh https://install.direct/go.sh && bash v2ray-installer.
 来源：[下载安装 · Project V 官方网站](https://www.v2ray.com/chapter_00/install.html)
 
 ## 更新日志
-### 2018 年 12 月 14 日
-- 推出 `All in One` Python 脚本（测试中）
-### 2018 年 12 月 5 日
-- 将所有文本文件的换行模式换成 LF 模式
-- 增加 mKCP 的 WireGuard 伪装模式
-### 2018 年 11 月 13 日
-- 增加 mKCP 的 DTLS 伪装模式
-### 2018 年 11 月 2 日
-- 更新配置文件格式，采用新版的配置格式
-### 2018 年 8 月 6 日
-- 项目初始化
+参见 commits 日志
