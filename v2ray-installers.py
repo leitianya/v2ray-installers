@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import codecs, sys, os
-os.system('export LANG="en_US.UTF-8"')
+os.system('export LANG="en_US.UTF-8" > NUL 2>&1')
 sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
 
 defaultConf = {
