@@ -86,9 +86,8 @@ def main():
 		return
 
 	print('1. TCP 2. WebSockets 3. mKCP')
-	print('请选择传输模式（输入序列号，默认 1） => ', end = '')
 	try:
-		CFG_MODE = int(input())
+		CFG_MODE = int(input('请选择传输模式（输入序列号，默认 1） => '))
 	except:
 		print('选择有误 ...')
 		return
@@ -111,45 +110,39 @@ def main():
 	print('在专业套餐及更高版本上，可以使用 WAF 规则 ID 100015 阻止除 80 和 443 之外的所有端口的请求')
 	print('80 和 443 端口是 Cloudflare Apps 能够使用的唯一端口')
 	print('80 和 443 端口是 Cloudflare Cache 能够使用的唯一端口')
-	print('请输入端口号（默认 2082） => ', end = '')
-	CFG_PORT = input()
+	CFG_PORT = input('请输入端口号（默认 2082） => ')
 	if CFG_PORT == '':
 		CFG_PORT = 2082
 	else:
-		try:
-			CFG_PORT = int(CFG_PORT)
-		except ValueError:
-			print(u'输入错误 ...')
-		else:
-			defaultConf['inbounds'][0]['port'] = CFG_PORT
+		defaultConf['inbounds'][0]['port'] = CFG_PORT
 	
 	print('正在生成用户连接 ID 中 ...', end = ' ')
-	defaultConf['inbounds'][0]['settings']['clients'][0]['id'] = str(uuid.uuid4())
+	defaultConf['inbounds'][len()]['settings']['clients'][0]['id'] = str(uuid.uuid4())
 	print('完成 ...')
 
 	print('正在更新软件源中 ...', end = ' ')
-	if execute('apt update'):
+	if execute('apt update > NUL'):
 		print('完成 ...')
 	else:
 		print('失败 ...')
 		return
 	
 	print('正在安装依赖软件中 ...', end = ' ')
-	if execute('apt install wget curl -y'):
+	if execute('apt install wget curl -y > NUL'):
 		print('完成 ...')
 	else:
 		print('失败 ...')
 		return
 	
 	print('正在下载核心程序中 ...', end = ' ')
-	if execute('wget -O v2ray-installer.sh https://install.direct/go.sh'):
+	if execute('wget -O v2ray-installer.sh https://install.direct/go.sh > NUL'):
 		print('成功，安装中 ...', end = ' ')
 
-		if execute('chmod +x v2ray-installer.sh') and execute('./v2ray-installer.sh --force'):
-			os.remove('v2ray-installer.sh')
+		if execute('chmod +x v2ray-installer.sh > NUL') and execute('./v2ray-installer.sh --force > NUL'):
+			os.remove('v2ray-installer.sh > NUL')
 			print('成功 ...')
 		else:
-			os.remove('v2ray-installer.sh')
+			os.remove('v2ray-installer.sh > NUL')
 			print('失败 ...')
 			return
 	else:
@@ -160,16 +153,13 @@ def main():
 	try:
 		open('/etc/v2ray/config.json', 'w').write(json.dumps(defaultConf))
 	except Exception as e:
-		try:
-			open('error.log', 'w').write(str(e))
-		except:
-			pass
+		open('error.log', 'w').write(str(e))
 
 		print('失败 ...')
 		return
 	
 	print('正在重启服务中 ...', end = ' ')
-	if execute('systemctl restart v2ray'):
+	if execute('systemctl restart v2ray > NUL'):
 		print('成功 ...')
 	else:
 		print('失败 ...')
