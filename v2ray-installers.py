@@ -117,7 +117,7 @@ def main():
 		defaultConf['inbounds'][0]['port'] = CFG_PORT
 	
 	print('正在生成用户连接 ID 中 ...', end = ' ')
-	defaultConf['inbounds'][len()]['settings']['clients'][0]['id'] = str(uuid.uuid4())
+	defaultConf['inbounds'][len(defaultConf['inbounds']) - 1]['settings']['clients'][0]['id'] = str(uuid.uuid4())
 	print('完成 ...')
 
 	print('正在更新软件源中 ...', end = ' ')
