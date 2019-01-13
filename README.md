@@ -1,6 +1,8 @@
 # v2ray 一键安装脚本 支持多种模式
 [GitHub](https://github.com/hacking001/v2ray-installers)、[GitLab](https://gitlab.com/hacking001/v2ray-installers)、[Coding](https://dev.tencent.com/u/hacking001/p/v2ray-installers)
 
+推一下自己的项目：[v2tap - 将 tun2socks 和 v2ray 搭配实现的 VPN 工具，跟 SSTap 类似](https://github.com/hacking001/v2tap)
+
 ## 总览
 - [已测试通过的系统](#已测试通过的系统)
 - [注意事项](#注意事项)
